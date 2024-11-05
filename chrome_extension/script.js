@@ -12,7 +12,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.type === 'SAVE_RED_FLAGS') {
       redFlags = cleanAndCreateArray(message.redFlags);
-      console.log('Received red flags:', redFlags);
       localStorage.setItem('redFlags', redFlags);
       sendResponse({status: 'success'});
       spotBadListings();
@@ -74,6 +73,5 @@ function cleanAndCreateArray(inputString) {
   }
   const splitArray = inputString.split(',');
   const cleanedArray = splitArray.map(element => element.trim());
-  console.log('Palabras clave: ' + cleanedArray);
   return cleanedArray;
 }
