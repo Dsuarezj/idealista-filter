@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   document.getElementById('saveButton').addEventListener('click', function() {
       event.preventDefault();
-      const redFlagsBuying = ["usufructo", "inmueble sin posesión", "ocupad", "okupad", "arrendado a tercero", "renta antigua", "alquilad", "despacho/estudio", "despacho", "oficina", "nuda", "procedimiento judicial", "no tiene hecha división horizontal", "contrato hasta"];
+      const redFlagsBuying = ["subasta", "usufructo", "inmueble sin posesión", "ocupad", "okupad", "arrendado a tercero", "renta antigua", "alquilad", "despacho/estudio", "nuda", "procedimiento judicial", "no tiene hecha división horizontal", "contrato hasta"];
       const redFlagsRenting = ["temporal", "temporada", "alquiler por meses", "alquiler mensual", "contratos por meses", "contrato por meses", "11 meses", "disponible hasta"];
 
       const buyRentValue = buyRentToggle.checked;
