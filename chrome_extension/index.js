@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   const redFlagsInput = document.getElementById('redFlagsInput');
   const buyRentToggle = document.getElementById('buyRentToggle');
+
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { type: 'GET_RED_FLAGS' }, (response) => {
+        if (response && response.redFlags) {
+            redFlagsInput.value = response.redFlags;
+            localStorage.setItem('redFlags', response.redFlags);
+        }
+    });
+  });
+
+
   const redFlagsValue = localStorage.getItem('redFlags');
   const buyRentValue = localStorage.getItem('buyRent');
 
@@ -29,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   document.getElementById('saveButton').addEventListener('click', function() {
       event.preventDefault();
-      const redFlagsBuying = ["inmueble sin posesión", "ocupad", "okupad", "arrendado a tercero", "renta antigua", "alquilad", "despacho/estudio", "despacho", "oficina", "nuda", "procedimiento judicial", "no tiene hecha división horizontal", "contrato hasta"];
+      const redFlagsBuying = ["usufructo", "inmueble sin posesión", "ocupad", "okupad", "arrendado a tercero", "renta antigua", "alquilad", "despacho/estudio", "despacho", "oficina", "nuda", "procedimiento judicial", "no tiene hecha división horizontal", "contrato hasta"];
       const redFlagsRenting = ["temporal", "temporada", "alquiler por meses", "alquiler mensual", "contratos por meses", "contrato por meses", "11 meses", "disponible hasta"];
 
       const buyRentValue = buyRentToggle.checked;

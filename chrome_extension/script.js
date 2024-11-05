@@ -2,6 +2,13 @@ let redFlags = cleanAndCreateArray(localStorage.getItem('redFlags')) || [];
 
 spotBadListings();
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.type === 'GET_RED_FLAGS') {
+      const redFlags = localStorage.getItem('redFlags');
+      sendResponse({ redFlags: redFlags });
+  }
+});
+
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.type === 'SAVE_RED_FLAGS') {
       redFlags = cleanAndCreateArray(message.redFlags);
